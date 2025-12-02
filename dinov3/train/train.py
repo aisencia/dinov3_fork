@@ -13,6 +13,8 @@ import sys
 from functools import partial
 from pathlib import Path
 
+import wsi_read  # import first, because otherwise openslide lib is not found
+
 import torch
 import torch.distributed
 from torch.distributed._tensor import DTensor
