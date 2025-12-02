@@ -93,6 +93,7 @@ For python-based LazyConfig, use "path.key=value".
     parser.add_argument("--record_ref_losses", action="store_true", help="record reference losses")
     parser.add_argument("--ref_losses_path", default="", type=str)
     parser.add_argument("--multi-distillation", action="store_true", help="run multi-distillation")
+    parser.add_argument("--local-rank", default=0, type=int, help="Variable for distributed computing.")
 
     return parser
 
@@ -580,7 +581,6 @@ def do_train(cfg, model, resume=False):
     metric_logger.synchronize_between_processes()
 
     return {k: meter.global_avg for k, meter in metric_logger.meters.items()}
-
 
 def main(argv=None):
     if argv is None:
